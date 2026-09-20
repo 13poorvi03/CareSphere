@@ -217,24 +217,29 @@ CareSphere is decision support, not a diagnosis tool. Emergency symptoms should 
 
 ## ⚙️ Configuration
 
-The backend defaults to local mock mode so the project can run without AWS credentials. For AWS-backed deployments, configure environment variables through the deployment environment rather than committing secrets:
+The backend defaults to local mock mode so the project can run without AWS credentials. For AWS-backed deployments, configure environment variables through the deployment environment or a secret manager. Do not paste real credentials into this README, source code, shell history, or committed `.env` files.
 
 ```env
 AWS_REGION=ap-south-1
-AWS_ACCESS_KEY_ID=your-access-key
-AWS_SECRET_ACCESS_KEY=your-secret-key
+# Supply these through the runtime environment or AWS IAM roles.
+AWS_ACCESS_KEY_ID=<runtime-injected-access-key>
+AWS_SECRET_ACCESS_KEY=<runtime-injected-secret-key>
 AWS_MOCK_MODE=false
 DYNAMODB_TABLE_RECORDS=CareSphere_HealthRecords
 DYNAMODB_TABLE_ALERTS=CareSphere_Alerts
 DYNAMODB_TABLE_PROFILES=CareSphere_Profiles
 S3_BUCKET_NAME=caresphere-prescriptions-and-qr
 BEDROCK_MODEL_ID=anthropic.claude-3-sonnet-20240229-v1:0
-OPENSEARCH_ENDPOINT=https://your-opensearch-endpoint
-COGNITO_USER_POOL_ID=your-user-pool-id
-COGNITO_APP_CLIENT_ID=your-app-client-id
+OPENSEARCH_ENDPOINT=<runtime-injected-opensearch-endpoint>
+COGNITO_USER_POOL_ID=<runtime-injected-user-pool-id>
+COGNITO_APP_CLIENT_ID=<runtime-injected-app-client-id>
 ```
 
-Never commit `.env` files, AWS access keys, Cognito secrets, or production patient data. The root `.gitignore` excludes common local credentials, virtual environments, caches, and frontend build artifacts.
+Prefer IAM roles, workload identity, AWS Secrets Manager, or your CI/CD secret store over long-lived access keys. Keep `AWS_MOCK_MODE=true` for local development unless a deliberate AWS integration test is being run.
+
+Never commit `.env` files, AWS access keys, Cognito secrets, private keys, bearer tokens, production patient data, or authenticated URLs. The root `.gitignore` excludes common local credentials, virtual environments, caches, and frontend build artifacts. The records and names shipped in this repository are synthetic demonstration data only; replace them with properly protected data stores in any real deployment.
+
+Before publishing or deploying, run a secret scanner such as GitHub secret scanning, Gitleaks, or TruffleHog against the working tree and Git history. If a secret is ever committed, revoke and rotate it immediately; deleting the file alone does not make the credential safe.
 
 ## 🧪 Development Commands
 
