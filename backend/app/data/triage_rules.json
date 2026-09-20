@@ -1,0 +1,149 @@
+{
+  "red_flags": [
+    {
+      "trigger_terms": ["chest pain", "crushing pressure", "left arm pain", "jaw pain", "angina"],
+      "category": "EMERGENCY",
+      "risk_score": 95,
+      "triage_guidance": "Immediate Emergency Department evaluation. Call ambulance (108 / 112 / 911) immediately. Do not drive yourself.",
+      "warning": "Suspected Acute Coronary Syndrome / Myocardial Infarction."
+    },
+    {
+      "trigger_terms": ["facial drooping", "arm weakness", "slurred speech", "sudden numbness", "speech loss", "stroke"],
+      "category": "EMERGENCY",
+      "risk_score": 98,
+      "triage_guidance": "Immediate Stroke Protocol. Time is brain. Rush to nearest emergency hospital with CT scanner.",
+      "warning": "Signs of Acute Ischemic or Hemorrhagic Stroke (FAST protocol)."
+    },
+    {
+      "trigger_terms": ["severe shortness of breath", "gasping for air", "blue lips", "stridor", "cannot speak full sentences"],
+      "category": "EMERGENCY",
+      "risk_score": 92,
+      "triage_guidance": "Emergency oxygenation required. Rush to emergency room.",
+      "warning": "Acute Respiratory Failure or severe asthma / pulmonary edema."
+    },
+    {
+      "trigger_terms": ["coughing blood", "vomiting blood", "black tarry stools", "hematemesis", "melena"],
+      "category": "HIGH_RISK",
+      "risk_score": 85,
+      "triage_guidance": "Urgent in-person medical evaluation within 2 hours. Requires hemodynamic stability check.",
+      "warning": "Active gastrointestinal hemorrhage or severe pulmonary bleeding."
+    },
+    {
+      "trigger_terms": ["high fever", "stiff neck", "photophobia", "confusion", "petechial rash"],
+      "category": "EMERGENCY",
+      "risk_score": 94,
+      "triage_guidance": "Immediate emergency room admission required for lumbar puncture and IV antibiotics.",
+      "warning": "Suspected bacterial meningitis."
+    },
+    {
+      "trigger_terms": ["sudden vision loss", "severe eye pain", "halos around lights"],
+      "category": "HIGH_RISK",
+      "risk_score": 80,
+      "triage_guidance": "Immediate ophthalmology emergency evaluation to prevent permanent optic nerve damage.",
+      "warning": "Possible acute angle-closure glaucoma or retinal detachment."
+    }
+  ],
+  "adaptive_questions": [
+    {
+      "condition_tag": "fever",
+      "match_keywords": ["fever", "temperature", "chills", "pyrexia", "body warm"],
+      "questions": [
+        {
+          "id": "fever_duration",
+          "question": "How many days have you had the fever?",
+          "options": ["Less than 24 hours", "1-3 days", "4-7 days", "More than a week"]
+        },
+        {
+          "id": "fever_temp",
+          "question": "What is the highest recorded temperature?",
+          "options": ["Mild (under 100°F / 37.8°C)", "Moderate (100-102°F / 37.8-38.9°C)", "High (Above 102°F / 38.9°C)", "Unmeasured"]
+        },
+        {
+          "id": "fever_chills",
+          "question": "Are you having chills or shaking with the fever?",
+          "options": ["No chills", "Mild chills", "Strong shaking chills", "Not sure"]
+        },
+        {
+          "id": "fever_cough",
+          "question": "Do you also have a cough or breathing difficulty?",
+          "options": ["No cough", "Dry cough", "Cough with mucus", "Cough with breathing difficulty"]
+        }
+      ]
+    },
+    {
+      "condition_tag": "headache",
+      "match_keywords": ["headache", "head pain", "migraine", "throbbing head"],
+      "questions": [
+        {
+          "id": "headache_onset",
+          "question": "Did this headache come on suddenly like a 'thunderclap' (peak intensity in seconds)?",
+          "options": ["No, gradual onset", "Yes, sudden explosive pain (worst of my life)"]
+        },
+        {
+          "id": "headache_visual",
+          "question": "Do you notice visual aura, sensitivity to light, or nausea?",
+          "options": ["Yes, classic migraine symptoms", "No, just dull/tight pressure", "Severe pain behind one eye with watering"]
+        }
+      ]
+    },
+    {
+      "condition_tag": "cough",
+      "match_keywords": ["cough", "phlegm", "chest congestion", "throat pain", "wheezing"],
+      "questions": [
+        {
+          "id": "cough_type",
+          "question": "Is your cough dry or producing sputum/mucus?",
+          "options": ["Dry tickling cough", "Yellow or green phlegm", "Blood-tinged phlegm", "Cough with wheezing"]
+        },
+        {
+          "id": "cough_breathlessness",
+          "question": "Are you having difficulty breathing while lying flat or climbing stairs?",
+          "options": ["No breathing difficulty", "Mild breathlessness on exertion", "Significant shortness of breath at rest"]
+        }
+      ]
+    },
+    {
+      "condition_tag": "abdominal_pain",
+      "match_keywords": ["stomach pain", "abdomen", "belly pain", "cramps", "tummy ache"],
+      "questions": [
+        {
+          "id": "abdo_location",
+          "question": "Where is the pain located primarily?",
+          "options": ["Right lower abdomen", "Upper abdomen / epigastric (burning)", "Around navel spreading out", "Diffuse general cramping"]
+        },
+        {
+          "id": "abdo_severity",
+          "question": "Does the pain worsen when you jump, cough, or release hand pressure?",
+          "options": ["No, unaffected by movement", "Yes, severe rebound tenderness (Appendicitis sign)"]
+        }
+      ]
+    },
+    {
+      "condition_tag": "diabetes",
+      "match_keywords": ["diabetes", "high sugar", "high blood sugar", "high diabetes", "glucose"],
+      "questions": [
+        {
+          "id": "diabetes_duration",
+          "question": "How long have your blood sugar readings been high or your diabetes symptoms been present?",
+          "options": ["Today or less than 24 hours", "A few days", "Several weeks", "I am not sure"]
+        },
+        {
+          "id": "diabetes_medications",
+          "question": "Which diabetes medicines or insulin are you currently taking?",
+          "options": ["Tablets as prescribed", "Insulin", "Both tablets and insulin", "No diabetes medicine currently"]
+        },
+        {
+          "id": "diabetes_reading",
+          "question": "What was your most recent blood sugar reading, and was it fasting or after a meal?",
+          "options": ["Within my target range", "Higher than my usual range", "Very high (over 300 mg/dL)", "I have not checked"]
+        },
+        {
+          "id": "diabetes_vision",
+          "question": "Have you noticed vision changes, unusual thirst, vomiting, confusion, or severe weakness?",
+          "options": ["None of these", "Thirst or frequent urination", "Blurred vision", "Vomiting, confusion, or severe weakness"]
+        }
+      ]
+    }
+  ]
+}
+

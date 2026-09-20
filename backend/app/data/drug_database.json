@@ -1,0 +1,287 @@
+{
+  "drugs": [
+    {
+      "brand_name": "Dolo 650",
+      "generic_name": "Paracetamol",
+      "strength": "650mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "Micro Labs",
+      "therapeutic_class": "Analgesic / Antipyretic",
+      "max_daily_dose_mg": 4000
+    },
+    {
+      "brand_name": "Crocin Advance",
+      "generic_name": "Paracetamol",
+      "strength": "500mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "GSK",
+      "therapeutic_class": "Analgesic / Antipyretic",
+      "max_daily_dose_mg": 4000
+    },
+    {
+      "brand_name": "Calpol 650",
+      "generic_name": "Paracetamol",
+      "strength": "650mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "GSK",
+      "therapeutic_class": "Analgesic / Antipyretic",
+      "max_daily_dose_mg": 4000
+    },
+    {
+      "brand_name": "Pacimol 650",
+      "generic_name": "Paracetamol",
+      "strength": "650mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "Ipca Laboratories",
+      "therapeutic_class": "Analgesic / Antipyretic",
+      "max_daily_dose_mg": 4000
+    },
+    {
+      "brand_name": "Combiflam",
+      "generic_name": "Ibuprofen + Paracetamol",
+      "strength": "400mg + 325mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "Sanofi India",
+      "therapeutic_class": "NSAID + Analgesic",
+      "max_daily_dose_mg": 1200
+    },
+    {
+      "brand_name": "Brufen 400",
+      "generic_name": "Ibuprofen",
+      "strength": "400mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "Abbott",
+      "therapeutic_class": "NSAID",
+      "max_daily_dose_mg": 1200
+    },
+    {
+      "brand_name": "Ecosprin 75",
+      "generic_name": "Aspirin",
+      "strength": "75mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "USV",
+      "therapeutic_class": "Antiplatelet",
+      "max_daily_dose_mg": 325
+    },
+    {
+      "brand_name": "Disprin",
+      "generic_name": "Aspirin",
+      "strength": "350mg",
+      "dosage_form": "Effervescent Tablet",
+      "manufacturer": "Reckitt Benckiser",
+      "therapeutic_class": "NSAID / Antiplatelet",
+      "max_daily_dose_mg": 4000
+    },
+    {
+      "brand_name": "Warf 5",
+      "generic_name": "Warfarin",
+      "strength": "5mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "Cipla",
+      "therapeutic_class": "Anticoagulant",
+      "max_daily_dose_mg": 10
+    },
+    {
+      "brand_name": "Augmentin 625 Duo",
+      "generic_name": "Amoxicillin + Clavulanic Acid",
+      "strength": "500mg + 125mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "GSK",
+      "therapeutic_class": "Antibiotic (Penicillin + Beta-lactamase inhibitor)",
+      "max_daily_dose_mg": 2000
+    },
+    {
+      "brand_name": "Moxikind-CV 625",
+      "generic_name": "Amoxicillin + Clavulanic Acid",
+      "strength": "500mg + 125mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "Mankind Pharma",
+      "therapeutic_class": "Antibiotic",
+      "max_daily_dose_mg": 2000
+    },
+    {
+      "brand_name": "Glycomet 500",
+      "generic_name": "Metformin",
+      "strength": "500mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "USV",
+      "therapeutic_class": "Antidiabetic (Biguanide)",
+      "max_daily_dose_mg": 2550
+    },
+    {
+      "brand_name": "Janumet 50/500",
+      "generic_name": "Sitagliptin + Metformin",
+      "strength": "50mg + 500mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "MSD",
+      "therapeutic_class": "Antidiabetic",
+      "max_daily_dose_mg": 2000
+    },
+    {
+      "brand_name": "Telma 40",
+      "generic_name": "Telmisartan",
+      "strength": "40mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "Glenmark",
+      "therapeutic_class": "Antihypertensive (ARB)",
+      "max_daily_dose_mg": 80
+    },
+    {
+      "brand_name": "Pan 40",
+      "generic_name": "Pantoprazole",
+      "strength": "40mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "Alkem",
+      "therapeutic_class": "Proton Pump Inhibitor",
+      "max_daily_dose_mg": 80
+    },
+    {
+      "brand_name": "Pantocid 40",
+      "generic_name": "Pantoprazole",
+      "strength": "40mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "Sun Pharma",
+      "therapeutic_class": "Proton Pump Inhibitor",
+      "max_daily_dose_mg": 80
+    },
+    {
+      "brand_name": "Atorva 20",
+      "generic_name": "Atorvastatin",
+      "strength": "20mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "Zydus Cadila",
+      "therapeutic_class": "Statin (Lipid-lowering)",
+      "max_daily_dose_mg": 80
+    },
+    {
+      "brand_name": "Sorbitrate 5",
+      "generic_name": "Isosorbide Dinitrate",
+      "strength": "5mg",
+      "dosage_form": "Sublingual Tablet",
+      "manufacturer": "Abbott",
+      "therapeutic_class": "Nitrate / Vasodilator",
+      "max_daily_dose_mg": 40
+    },
+    {
+      "brand_name": "Manforce 50",
+      "generic_name": "Sildenafil",
+      "strength": "50mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "Mankind Pharma",
+      "therapeutic_class": "PDE-5 Inhibitor",
+      "max_daily_dose_mg": 100
+    },
+    {
+      "brand_name": "Ciplar 40",
+      "generic_name": "Propranolol",
+      "strength": "40mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "Cipla",
+      "therapeutic_class": "Beta-blocker",
+      "max_daily_dose_mg": 160
+    },
+    {
+      "brand_name": "Asthalin Inhaler",
+      "generic_name": "Salbutamol",
+      "strength": "100mcg",
+      "dosage_form": "Inhaler",
+      "manufacturer": "Cipla",
+      "therapeutic_class": "Bronchodilator (Beta-2 agonist)",
+      "max_daily_dose_mg": 800
+    },
+    {
+      "brand_name": "Aldactone 25",
+      "generic_name": "Spironolactone",
+      "strength": "25mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "RPG Life Sciences",
+      "therapeutic_class": "Potassium-sparing Diuretic",
+      "max_daily_dose_mg": 100
+    },
+    {
+      "brand_name": "Envas 5",
+      "generic_name": "Enalapril",
+      "strength": "5mg",
+      "dosage_form": "Tablet",
+      "manufacturer": "Cadila",
+      "therapeutic_class": "ACE Inhibitor",
+      "max_daily_dose_mg": 40
+    },
+    {
+      "brand_name": "Potklor Syrup",
+      "generic_name": "Potassium Chloride",
+      "strength": "1.5g/15ml",
+      "dosage_form": "Oral Solution",
+      "manufacturer": "Walter Bushnell",
+      "therapeutic_class": "Potassium Supplement",
+      "max_daily_dose_mg": 4000
+    }
+  ],
+  "interactions": [
+    {
+      "drug_a": "Warfarin",
+      "drug_b": "Aspirin",
+      "severity": "CRITICAL",
+      "why": "Both medications possess potent anticoagulant and antiplatelet properties. Combining them produces synergistic inhibition of the blood clotting cascade.",
+      "concern": "Significantly elevated risk of fatal internal hemorrhage, gastrointestinal ulcer bleeding, and hemorrhagic stroke.",
+      "action": "Avoid concurrent use unless strictly supervised by a cardiologist or hematologist with continuous INR monitoring."
+    },
+    {
+      "drug_a": "Warfarin",
+      "drug_b": "Ibuprofen",
+      "severity": "CRITICAL",
+      "why": "NSAIDs damage gastric mucosa and inhibit platelet aggregation while Warfarin prevents thrombus formation.",
+      "concern": "Severe upper gastrointestinal ulceration and life-threatening bleeding episodes.",
+      "action": "Discontinue Ibuprofen immediately. Use Paracetamol for analgesia if approved by physician."
+    },
+    {
+      "drug_a": "Sildenafil",
+      "drug_b": "Isosorbide Dinitrate",
+      "severity": "CRITICAL",
+      "why": "Nitrates increase cyclic GMP production while PDE-5 inhibitors block cyclic GMP breakdown, causing massive arterial vasodilation.",
+      "concern": "Catastrophic, refractory systemic hypotension, myocardial infarction, and cardiovascular collapse.",
+      "action": "Absolute contraindication. Never administer nitrates within 24-48 hours of PDE-5 inhibitor ingestion."
+    },
+    {
+      "drug_a": "Spironolactone",
+      "drug_b": "Enalapril",
+      "severity": "MAJOR",
+      "why": "Both agents reduce aldosterone secretion and renal potassium clearance.",
+      "concern": "Severe hyperkalemia (>5.5 mEq/L) leading to cardiac arrhythmias, heart block, and cardiac arrest.",
+      "action": "Closely monitor serum potassium and renal function (eGFR/creatinine) weekly during initiation or dose changes."
+    },
+    {
+      "drug_a": "Spironolactone",
+      "drug_b": "Potassium Chloride",
+      "severity": "CRITICAL",
+      "why": "Potassium supplements combined with potassium-sparing diuretics rapidly overload serum potassium levels.",
+      "concern": "Fatal cardiac arrest triggered by acute hyperkalemia.",
+      "action": "Do not co-prescribe potassium supplements with potassium-sparing diuretics unless severe hypokalemia is clinically proven."
+    },
+    {
+      "drug_a": "Propranolol",
+      "drug_b": "Salbutamol",
+      "severity": "MAJOR",
+      "why": "Propranolol is a non-selective beta-blocker that competitively antagonizes beta-2 adrenergic receptors in bronchial smooth muscle.",
+      "concern": "Antagonizes the bronchodilatory action of Salbutamol, potentially precipitating acute severe bronchospasm or fatal asthma attack.",
+      "action": "Avoid non-selective beta-blockers in patients with asthma or COPD. Switch to a cardioselective beta-1 agent if necessary."
+    },
+    {
+      "drug_a": "Metformin",
+      "drug_b": "Alcohol",
+      "severity": "MAJOR",
+      "why": "Both compounds inhibit hepatic gluconeogenesis and increase lactate production.",
+      "concern": "Life-threatening lactic acidosis and profound hypoglycemic episodes.",
+      "action": "Advise patient to completely abstain from acute or chronic excessive alcohol intake while on Metformin."
+    },
+    {
+      "drug_a": "Atorvastatin",
+      "drug_b": "Clarithromycin",
+      "severity": "MAJOR",
+      "why": "Macrolide antibiotics strongly inhibit CYP3A4 metabolism of statins, causing accumulation of statin plasma levels.",
+      "concern": "High risk of rhabdomyolysis (muscle breakdown) and acute renal failure.",
+      "action": "Temporarily withhold Atorvastatin during the antibiotic treatment course."
+    }
+  ]
+}
+

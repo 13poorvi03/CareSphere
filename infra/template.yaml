@@ -1,0 +1,188 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  BharatBuild Healthcare Platform - Serverless Architecture
+  Includes API Gateway, FastAPI Lambda, DynamoDB, S3, Cognito, EventBridge, and Step Functions.
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 512
+    Runtime: python3.11
+    Environment:
+      Variables:
+        AWS_MOCK_MODE: "False"
+        S3_BUCKET_NAME: !Ref PrescriptionAndQRBucket
+        DYNAMODB_TABLE_RECORDS: !Ref HealthRecordsTable
+        DYNAMODB_TABLE_ALERTS: !Ref AlertsTable
+        DYNAMODB_TABLE_PROFILES: !Ref ProfilesTable
+        EVENTBRIDGE_BUS_NAME: !Ref HealthcareEventBus
+        BEDROCK_MODEL_ID: "anthropic.claude-3-sonnet-20240229-v1:0"
+
+Resources:
+  # ==========================================
+  # 1. API Gateway & FastAPI Backend Lambda
+  # ==========================================
+  HealthcareApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      Cors:
+        AllowMethods: "'*'"
+        AllowHeaders: "'*'"
+        AllowOrigin: "'*'"
+
+  FastAPIFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../backend
+      Handler: app.lambda_handler.handler
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref HealthRecordsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref AlertsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProfilesTable
+        - S3CrudPolicy:
+            BucketName: !Ref PrescriptionAndQRBucket
+        - EventBridgePutEventsPolicy:
+            EventBusName: !Ref HealthcareEventBus
+        - Statement:
+            - Effect: Allow
+              Action:
+                - bedrock:InvokeModel
+              Resource: "*"
+      Events:
+        RootEvent:
+          Type: Api
+          Properties:
+            RestApiId: !Ref HealthcareApi
+            Path: /
+            Method: ANY
+        ProxyEvent:
+          Type: Api
+          Properties:
+            RestApiId: !Ref HealthcareApi
+            Path: /{proxy+}
+            Method: ANY
+
+  # ==========================================
+  # 2. AWS DynamoDB Tables
+  # ==========================================
+  HealthRecordsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: BharatBuild_HealthRecords
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: patient_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: PatientIndex
+          KeySchema:
+            - AttributeName: patient_id
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+
+  AlertsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: BharatBuild_Alerts
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: patient_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: PatientAlertsIndex
+          KeySchema:
+            - AttributeName: patient_id
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+
+  ProfilesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: BharatBuild_Profiles
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: patient_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: patient_id
+          KeyType: HASH
+
+  # ==========================================
+  # 3. AWS S3 Storage
+  # ==========================================
+  PrescriptionAndQRBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "bharatbuild-rx-qr-${AWS::AccountId}"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders: ['*']
+            AllowedMethods: [GET, PUT, POST]
+            AllowedOrigins: ['*']
+
+  # ==========================================
+  # 4. AWS Cognito Authentication
+  # ==========================================
+  HealthcareUserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: BharatBuild_UserPool
+      AutoVerifiedAttributes:
+        - email
+      UsernameAttributes:
+        - email
+
+  HealthcareUserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: BharatBuild_WebClient
+      UserPoolId: !Ref HealthcareUserPool
+      GenerateSecret: false
+      ExplicitAuthFlows:
+        - ALLOW_USER_PASSWORD_AUTH
+        - ALLOW_REFRESH_TOKEN_AUTH
+
+  # ==========================================
+  # 5. AWS EventBridge Bus
+  # ==========================================
+  HealthcareEventBus:
+    Type: AWS::Events::EventBus
+    Properties:
+      Name: bharatbuild-health-events
+
+Outputs:
+  ApiEndpoint:
+    Description: "FastAPI API Gateway endpoint"
+    Value: !Sub "https://${HealthcareApi}.execute-api.${AWS::Region}.amazonaws.com/prod/"
+  UserPoolId:
+    Description: "Cognito User Pool ID"
+    Value: !Ref HealthcareUserPool
+  UserPoolClientId:
+    Description: "Cognito App Client ID"
+    Value: !Ref HealthcareUserPoolClient
+  S3Bucket:
+    Description: "Prescriptions & QR S3 Bucket"
+    Value: !Ref PrescriptionAndQRBucket
+

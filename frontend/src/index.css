@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --care-navy: #082750;
+    --care-blue: #0f4c91;
+    --care-gold: #c99b36;
+    --care-ink: #12233f;
+    --care-mist: #eef4fb;
+  }
+
+  body {
+    @apply text-slate-900 antialiased;
+    background-color: var(--care-mist);
+    background-image: linear-gradient(120deg, rgba(255, 255, 255, 0.92), transparent 42%), radial-gradient(circle at 90% 0%, rgba(201, 155, 54, 0.14), transparent 22rem);
+    min-height: 100vh;
+  }
+}
+
+@keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slide-up { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+
+.care-shell { animation: fade-in 500ms ease-out both; }
+.animate-fade-in { animation: fade-in 450ms ease-out both; }
+.animate-slide-up { animation: slide-up 450ms ease-out both; }
+.care-hero { background: linear-gradient(120deg, var(--care-navy), var(--care-blue) 72%); border: 1px solid #1f5b9e; box-shadow: 0 18px 36px rgba(8, 39, 80, 0.2); }
+.care-panel { background: rgba(255, 255, 255, 0.96); border: 1px solid #d3dfed; box-shadow: 0 18px 48px rgba(25, 51, 82, 0.1); transition: box-shadow 220ms ease, transform 220ms ease; }
+.care-panel:hover { box-shadow: 0 22px 54px rgba(25, 51, 82, 0.14); }
+.care-input { background: #fbfdff; border: 1px solid #cdd9e7; color: #1e293b; transition: border-color 180ms ease, box-shadow 180ms ease; }
+.care-input:focus { border-color: #1d5a9e; box-shadow: 0 0 0 3px rgba(29, 90, 158, 0.14); }
+.chat-preview { background: linear-gradient(135deg, #f7faff, #edf3fa); border: 1px solid #d9e2ed; }
+.chat-user { background: #123b72; color: white; }
+.chat-assistant { background: #f5f7fb; border: 1px solid #dce4ef; color: #26364d; }
+.finding-grid { display: grid; gap: 0.85rem; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #f7f9fc; }
+.finding-label { color: #6b7b91; display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.12em; margin-bottom: 0.25rem; text-transform: uppercase; }
+@media (max-width: 640px) { .finding-grid { grid-template-columns: 1fr; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

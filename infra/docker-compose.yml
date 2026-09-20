@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  localstack:
+    container_name: bharatbuild_localstack
+    image: localstack/localstack:latest
+    ports:
+      - "4566:4566"
+      - "4510-4559:4510-4559"
+    environment:
+      - SERVICES=s3,dynamodb,events,stepfunctions,cognito-idp
+      - AWS_DEFAULT_REGION=ap-south-1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  backend:
+    container_name: bharatbuild_backend
+    build:
+      context: ../backend
+      dockerfile: ../infra/Dockerfile.backend
+    ports:
+      - "8000:8000"
+    environment:
+      - AWS_REGION=ap-south-1
+      - AWS_MOCK_MODE=True
+      - S3_BUCKET_NAME=bharatbuild-prescriptions-and-qr
+      - DYNAMODB_TABLE_RECORDS=BharatBuild_HealthRecords
+      - DYNAMODB_TABLE_ALERTS=BharatBuild_Alerts
+    depends_on:
+      - localstack
+
